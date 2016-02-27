@@ -604,17 +604,41 @@ class MyExpandableDraggableSwipeableItemAdapter
             mChildPosition = childPosition;
         }
 
+//        @Override
+//        protected void onPerformAction() {
+//            super.onPerformAction();
+//
+//            AbstractExpandableDataProvider.ChildData item =
+//                    mAdapter.mProvider.getChildItem(mGroupPosition, mChildPosition);
+//
+//            if (!item.isPinned()) {
+//                item.setPinned(true);
+//                mAdapter.mExpandableItemManager.notifyChildItemChanged(mGroupPosition, mChildPosition);
+//                mSetPinned = true;
+//            }
+//        }
+
+        // MyExpandableDraggableSwipeableItemAdapter.ChildSwipeLeftResultAction
         @Override
         protected void onPerformAction() {
             super.onPerformAction();
 
-            AbstractExpandableDataProvider.ChildData item =
-                    mAdapter.mProvider.getChildItem(mGroupPosition, mChildPosition);
+            AbstractExpandableDataProvider provider = mAdapter.mProvider;
+            AbstractExpandableDataProvider.ChildData item = provider.getChildItem(mGroupPosition, mChildPosition);
 
             if (!item.isPinned()) {
+                int childCount = provider.getChildCount(mGroupPosition);
+
+                // unpin all children
+                for (int i = 0; i < childCount; i++) {
+                    provider.getChildItem(mGroupPosition, i).setPinned(false);
+                }
+
+                // pin the swiped child
                 item.setPinned(true);
-                mAdapter.mExpandableItemManager.notifyChildItemChanged(mGroupPosition, mChildPosition);
-                mSetPinned = true;
+
+                // notify changed
+                mAdapter.mExpandableItemManager.notifyChildItemRangeChanged(mGroupPosition, 0, childCount);
             }
         }
 

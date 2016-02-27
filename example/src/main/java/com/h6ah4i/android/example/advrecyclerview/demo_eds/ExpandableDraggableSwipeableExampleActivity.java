@@ -26,6 +26,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.h6ah4i.android.example.advrecyclerview.R;
+import com.h6ah4i.android.example.advrecyclerview.common.data.AbstractDataProvider;
 import com.h6ah4i.android.example.advrecyclerview.common.data.AbstractExpandableDataProvider;
 import com.h6ah4i.android.example.advrecyclerview.common.fragment.ExampleExpandableDataProviderFragment;
 import com.h6ah4i.android.example.advrecyclerview.common.fragment.ExpandableItemPinnedMessageDialogFragment;
@@ -179,6 +180,45 @@ public class ExpandableDraggableSwipeableExampleActivity extends AppCompatActivi
             getDataProvider().getChildItem(groupPosition, childPosition).setPinned(ok);
             ((RecyclerListViewFragment) fragment).notifyChildItemChanged(groupPosition, childPosition);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        // unpin all group/child items
+        AbstractExpandableDataProvider provider = getDataProvider();
+
+        int pinned = 0;
+        int numGroups = provider.getGroupCount();
+
+        for (int i = 0; i < numGroups; i++) {
+            int numChildren = provider.getChildCount(i);
+            AbstractExpandableDataProvider.GroupData group = provider.getGroupItem(i);
+
+            if (group.isPinned()) {
+                pinned += 1;
+                group.setPinned(false);
+            }
+
+            for (int j = 0; j < numChildren; j++) {
+                AbstractExpandableDataProvider.ChildData child = provider.getChildItem(i, j);
+
+                if (child.isPinned()) {
+                    pinned += 1;
+                    child.setPinned(false);
+                }
+            }
+        }
+
+        // invoke adapter.notifyDataSetChanged() if pinned item existed
+        if (pinned > 0) {
+            final Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);
+            ((RecyclerListViewFragment) fragment).notifyDataSetChanged();
+
+            return;
+        }
+
+        super.onBackPressed();
     }
 
     public AbstractExpandableDataProvider getDataProvider() {

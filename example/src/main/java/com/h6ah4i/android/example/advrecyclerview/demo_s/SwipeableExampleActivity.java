@@ -92,13 +92,20 @@ public class SwipeableExampleActivity extends AppCompatActivity implements ItemP
      */
     public void onItemClicked(int position) {
         final Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);
-        AbstractDataProvider.Data data = getDataProvider().getItem(position);
 
-        if (data.isPinned()) {
-            // unpin if tapped the pinned item
+        int n = getDataProvider().getCount();
+        for (int i = 0; i < n; i++) {
+            AbstractDataProvider.Data data = getDataProvider().getItem(i);
             data.setPinned(false);
-            ((RecyclerListViewFragment) fragment).notifyItemChanged(position);
+            ((RecyclerListViewFragment) fragment).notifyAllItemsChanged();
         }
+//        AbstractDataProvider.Data data = getDataProvider().getItem(position);
+//
+//        if (data.isPinned()) {
+//            // unpin if tapped the pinned item
+//            data.setPinned(false);
+//            ((RecyclerListViewFragment) fragment).notifyItemChanged(position);
+//        }
     }
 
     private void onItemUndoActionClicked() {

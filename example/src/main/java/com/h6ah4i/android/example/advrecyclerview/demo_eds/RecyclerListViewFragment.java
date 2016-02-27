@@ -284,4 +284,8 @@ public class RecyclerListViewFragment extends Fragment
 
         mAdapter.notifyItemChanged(flatPosition);
     }
+
+    public void notifyDataSetChanged() {
+        mAdapter.notifyDataSetChanged();
+    }
 }
