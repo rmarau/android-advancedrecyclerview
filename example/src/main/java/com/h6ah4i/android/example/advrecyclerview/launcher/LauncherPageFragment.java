@@ -36,6 +36,7 @@ import com.h6ah4i.android.example.advrecyclerview.demo_e_add_remove.AddRemoveExp
 import com.h6ah4i.android.example.advrecyclerview.demo_e_already_expanded.AlreadyExpandedGroupsExpandableExampleActivity;
 import com.h6ah4i.android.example.advrecyclerview.demo_ed_with_section.ExpandableDraggableWithSectionExampleActivity;
 import com.h6ah4i.android.example.advrecyclerview.demo_eds.ExpandableDraggableSwipeableExampleActivity;
+import com.h6ah4i.android.example.advrecyclerview.demo_eds_vp_sec_long.ViewpagerExpandableDraggableSwipeableSectionActivity;
 import com.h6ah4i.android.example.advrecyclerview.demo_s.SwipeableExampleActivity;
 import com.h6ah4i.android.example.advrecyclerview.demo_s_legacy.LegacySwipeableExampleActivity;
 import com.h6ah4i.android.example.advrecyclerview.demo_s_longpress.SwipeOnLongPressExampleActivity;
@@ -108,6 +109,7 @@ public class LauncherPageFragment extends Fragment {
                 adapter.put(DraggableSwipeableExampleActivity.class, R.string.activity_title_demo_ds);
                 adapter.put(ExpandableDraggableSwipeableExampleActivity.class, R.string.activity_title_demo_eds);
                 adapter.put(ExpandableDraggableWithSectionExampleActivity.class, R.string.activity_title_demo_ed_with_section);
+                adapter.put(ViewpagerExpandableDraggableSwipeableSectionActivity.class, R.string.activity_title_demo_eds_vp_sec_long);
                 break;
             default:
                 throw new IllegalArgumentException();

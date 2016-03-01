@@ -101,6 +101,10 @@
             android:label="@string/activity_title_demo_s_legacy"/>
 
         <activity
+            android:name=".demo_eds_vp_sec_long.ViewpagerExpandableDraggableSwipeableSectionActivity"
+            android:label="@string/activity_title_demo_eds_vp_sec_long"/>
+
+        <activity
             android:name=".about.AboutActivity"
             android:label="@string/activity_title_about"/>
     </application>
