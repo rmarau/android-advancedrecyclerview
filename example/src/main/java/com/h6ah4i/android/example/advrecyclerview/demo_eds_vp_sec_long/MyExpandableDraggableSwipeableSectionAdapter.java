@@ -494,9 +494,13 @@ class MyExpandableDraggableSwipeableSectionAdapter
     }
 
 
-
     @Override
     public int onGetGroupItemSwipeReactionType(MyGroupViewHolder holder, int groupPosition, int x, int y) {
+        // check is normal item
+        if (!isSectionHeader(holder)) {
+            return Swipeable.REACTION_CAN_NOT_SWIPE_ANY;
+        }
+
         if (onCheckGroupCanStartDrag(holder, groupPosition, x, y)) {
             return Swipeable.REACTION_CAN_NOT_SWIPE_BOTH_H;
         }
