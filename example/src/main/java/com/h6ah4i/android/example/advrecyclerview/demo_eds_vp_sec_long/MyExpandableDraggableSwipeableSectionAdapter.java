@@ -502,11 +502,13 @@ class MyExpandableDraggableSwipeableSectionAdapter
         }
 
         if (onCheckGroupCanStartDrag(holder, groupPosition, x, y)) {
-            return Swipeable.REACTION_CAN_NOT_SWIPE_BOTH_H;
+            //return Swipeable.REACTION_CAN_NOT_SWIPE_BOTH_H;
+            return Swipeable.REACTION_CAN_SWIPE_RIGHT;
         }
 
         if (mProvider.getGroupItem(groupPosition).isPinned()){
-            return Swipeable.REACTION_CAN_SWIPE_BOTH_H;
+            //return Swipeable.REACTION_CAN_SWIPE_BOTH_H;
+            return Swipeable.REACTION_CAN_SWIPE_LEFT;
         }else {
             return Swipeable.REACTION_CAN_SWIPE_LEFT | Swipeable.REACTION_MASK_START_SWIPE_LEFT |
                     Swipeable.REACTION_CAN_SWIPE_RIGHT | Swipeable.REACTION_MASK_START_SWIPE_RIGHT |
@@ -517,11 +519,13 @@ class MyExpandableDraggableSwipeableSectionAdapter
     @Override
     public int onGetChildItemSwipeReactionType(MyChildViewHolder holder, int groupPosition, int childPosition, int x, int y) {
         if (onCheckChildCanStartDrag(holder, groupPosition, childPosition, x, y)) {
-            return Swipeable.REACTION_CAN_NOT_SWIPE_BOTH_H;
+            //return Swipeable.REACTION_CAN_NOT_SWIPE_BOTH_H;
+            return Swipeable.REACTION_CAN_SWIPE_RIGHT;
         }
 
         if (mProvider.getGroupItem(groupPosition).isPinned()){
-            return Swipeable.REACTION_CAN_SWIPE_BOTH_H;
+            //return Swipeable.REACTION_CAN_SWIPE_BOTH_H;
+            return Swipeable.REACTION_CAN_SWIPE_LEFT;
         }else {
             return Swipeable.REACTION_CAN_SWIPE_LEFT | Swipeable.REACTION_MASK_START_SWIPE_LEFT |
                     Swipeable.REACTION_CAN_SWIPE_RIGHT | Swipeable.REACTION_MASK_START_SWIPE_RIGHT |
