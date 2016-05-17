@@ -333,7 +333,14 @@ class ExpandableDraggableSwipeableExampleAdapter
         final int offsetX = containerView.getLeft() + (int) (ViewCompat.getTranslationX(containerView) + 0.5f);
         final int offsetY = containerView.getTop() + (int) (ViewCompat.getTranslationY(containerView) + 0.5f);
 
-        return ViewUtils.hitTest(dragHandleView, x - offsetX, y - offsetY);
+        if (ViewUtils.hitTest(dragHandleView, x - offsetX, y - offsetY)) {
+            if (!mExpandableItemManager.isAllGroupsCollapsed())
+                mExpandableItemManager.collapseAll();
+            return true;
+        }
+
+        return false;
+
     }
 
     @Override
